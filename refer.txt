@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---Created by Vibhor-->
+<!---Edited by Susmit on 1st July 2017-->
+
+<!--contents of the "Upcoming" tab-->
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/f_0_t_0_sv"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:paddingTop="20dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:text="Card 1"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:paddingTop="20dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:text="Card 2"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</ScrollView>
+
+
+
+public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_my);
+AppCompatActivity a=(AppCompatActivity) getContext(); 
+        
+        a.setContentView(R.layout.recycle_view);
+        RecyclerView recList = (RecyclerView) a.findViewById(R.id.cardList);
+        recList.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(a);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recList.setLayoutManager(llm);
+
+        ContactAdapter ca = new ContactAdapter(createList(5));
+        // ContactAdapter ca = new ContactAdapter();
+        recList.setAdapter(ca);
+    }
+
+
+   
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    private List<ContactInfo> createList(int size) {
+
+        List<ContactInfo> result = new ArrayList<ContactInfo>();
+        for (int i=1; i <= size; i++) {
+            ContactInfo ci = new ContactInfo();
+
+            result.add(ci);
+
+        }
+
+        return result;
+    }
